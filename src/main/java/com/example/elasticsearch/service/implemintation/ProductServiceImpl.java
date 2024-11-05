@@ -53,23 +53,24 @@ public class ProductServiceImpl implements ProductService {
             }
             return productDtoList;
         } else if (isAvailability != null && name != null) {
-            String json = " { \n" +
-                    "   \"query\": {\n" +
-                    "        \"bool\": {\n" +
-                    "             \"must\": [{\n" +
-                    "                \"match_phrase\": {\n" +
-                    "                   \"scuDto.isAvailability\":" + isAvailability + "\n" +
-                    "                  }\n" +
-                    "                },\n" +
-                    "                {\n" +
-                    "                    \"match_phrase\": {\n" +
-                    "                   \"name\":" + name + "\n" +
-                    "                  }\n" +
-                    "                }\n" +
-                    "             ] \n" +
-                    "         }\n" +
-                    "   }\n" +
-                    "}";
+            String json = " {\n" +
+                    "    \"query\": {\n" +
+                    "   \"bool\": {\n" +
+                    "    \"must\": [ \n" +
+                    "            { \"term\": { \"name\":" + name  + "} }," + "\n" +
+                    "    {\"nested\": {\n" +
+                    "   \"path\": \"scuDto\",\n" +
+                    "      \"query\": {\n" +
+                    "          \n" +
+                    "            \"term\": { \"scuDto.isAvailability\":" + isAvailability + "} }" + "\n" +
+                    "          \n" +
+                    "        \n" +
+                    "    }\n" +
+                    "    }\n" +
+                    "    ]\n" +
+                    "    }\n" +
+                    "    }\n" +
+                    "    }";
             ParameterizedTypeReference<Object> ind = new ParameterizedTypeReference<Object>() {
             };
             HttpEntity<Object> requestEntity = new HttpEntity<>(gson.fromJson(json, Object.class));
@@ -83,13 +84,23 @@ public class ProductServiceImpl implements ProductService {
             }
             return productDtoList;
         } else if (name == null) {
+
             String json = "{\n" +
-                    "  \"query\": {\n" +
-                    "    \"match_phrase\" : {\n" +
-                    "      \"scuDto.isAvailability\":" + isAvailability + "\n" +
+                    "    \"query\": {\n" +
+                    "    \"nested\": {\n" +
+                    "   \"path\": \"scuDto\",\n" +
+                    "      \"query\": {\n" +
+                    "   \"bool\": {\n" +
+                    "          \"must\": [\n" +
+                    "            { \"term\": { \"scuDto.isAvailability\": " + isAvailability + "}}" + "\n" +
+                    "          ]\n" +
+                    "        }\n" +
                     "    }\n" +
-                    "  }\n" +
+                    "  \n" +
+                    "    }\n" +
+                    "    }\n" +
                     "}";
+
             ParameterizedTypeReference<Object> ind = new ParameterizedTypeReference<Object>() {
             };
             HttpEntity<Object> requestEntity = new HttpEntity<>(gson.fromJson(json, Object.class));
@@ -107,7 +118,7 @@ public class ProductServiceImpl implements ProductService {
                     "  \"query\": {\n" +
                     "    \"wildcard\":{\n" +
                     "    \"name\" : {\n" +
-                    "      \"value\":" +  '"'+ "*" + name + "*" + '"'+ "\n" +
+                    "      \"value\":" + '"' + "*" + name + "*" + '"' + "\n" +
                     "    }\n" +
                     "  }\n" +
                     "}\n" +
