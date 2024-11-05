@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: "03-11-2024-create_sku.yml"
+      author: Hushchyn
+      changes:
+        - createTable:
+            tableName: sku
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: supplier
+                  type: varchar(255)
+              - column:
+                  name: colour
+                  type: varchar(255)
+              - column:
+                  name: is_availability
+                  type: boolean
+              - column:
+                  name: size
+                  type: BIGINT
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: product_id
+                    references: products(id)

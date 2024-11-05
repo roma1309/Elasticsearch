@@ -13,6 +13,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(name = "date_create")
     private LocalDateTime dateCreate;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productEntity")
     private List<SkuEntity> skuList = new ArrayList<>();
@@ -50,5 +51,22 @@ public class ProductEntity {
 
     public void setSkuList(List<SkuEntity> skuList) {
         this.skuList = skuList;
+    }
+
+    @Override
+    public String toString() {
+        return '\n' + "{ \"index\" : {} }" + '\n' +
+                "{" + '"' + "id" + '"' + ":" + id + "," +
+                '"' + "name" + '"' + ":" + '"' + name + '"' + "," +
+                '"' + "dateCreate" + '"' + ":" + '"' + dateCreate + '"' + "," +
+                '"' + "skuList" + '"' + ":" + skuList + '}';
+    }
+
+    public String toStringJson() {
+        return "{ \"index\" : {} }" + '\n' +
+                "{" + '"' + "id" + '"' + ":" + id + "," +
+                '"' + "name" + '"' + ":" + '"' + name + '"' + "," +
+                '"' + "dateCreate" + '"' + ":" + '"' + dateCreate + '"' + "," +
+                '"' + "skuList" + '"' + ":" + skuList + '}';
     }
 }

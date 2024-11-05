@@ -1,0 +1,125 @@
+databaseChangeLog:
+  - changeSet:
+      id: "03-11-2024-insert-value-product.yml"
+      author: Hushchyn
+      changes:
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: тв
+              - column:
+                  name: date_create
+                  value: 2003-03-18 04:05:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: стол
+              - column:
+                  name: date_create
+                  value: 2013-03-18 04:05:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: приставка
+              - column:
+                  name: date_create
+                  value: 2015-04-18 11:05:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: наушники
+              - column:
+                  name: date_create
+                  value: 2022-05-11 04:05:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: ковер
+              - column:
+                  name: date_create
+                  value: 2011-12-18 14:00:00
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: name
+                  value: телефон
+              - column:
+                  name: date_create
+                  value: 2016-01-18 04:05:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: name
+                  value: планшет
+              - column:
+                  name: date_create
+                  value: 2020-10-13 16:55:56
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: name
+                  value: колонка
+              - column:
+                  name: date_create
+                  value: 2001-09-13 06:07:08
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: name
+                  value: тв
+              - column:
+                  name: date_create
+                  value: 2011-07-20 06:45:06
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: name
+                  value: носки
+              - column:
+                  name: date_create
+                  value: 2007-07-17 07:07:07

@@ -1,15 +1,20 @@
 package com.example.elasticsearch.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "sku")
 public class SkuEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String supplier;
     private String colour;
+    @Column(name = "is_availability")
+    private boolean isAvailability;
     private double size;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private ProductEntity productEntity;
@@ -55,5 +60,24 @@ public class SkuEntity {
 
     public void setProductEntity(ProductEntity productEntity) {
         this.productEntity = productEntity;
+    }
+
+    public boolean isAvailability() {
+        return isAvailability;
+    }
+
+    public void setAvailability(boolean availability) {
+        isAvailability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                '"' + "id" + '"' + ":" + id + "," +
+                '"' + "supplier" + '"' + ":" + '"' + supplier + '"' + "," +
+                '"' + "isAvailability" + '"' + ":" + isAvailability + "," +
+                '"' + "colour" + '"' + ":" + '"' + colour + '"' + "," +
+                '"' + "size" + '"' + ":" + size +
+                '}';
     }
 }
