@@ -9,6 +9,7 @@ docker-compose up
 
 Доступ к странице поиска
 Основная страница с поиском будет доступна по корневому пути: http://localhost:8080/api/products
+http://localhost:8080/api/products?is_availability=true&name=наушники
 
 Дополнительно
 Перед началом работы убедитесь, что у вас создана база данных, установлен образ elasticsearch и создан jar файл.

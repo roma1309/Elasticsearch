@@ -19,12 +19,12 @@ public class ProductConverter {
         ProductDto productDto = new ProductDto();
         Gson gson = new Gson();
         productDto = gson.fromJson(jsonObject.getAsJsonObject(), ProductDto.class);
-        JsonArray scuList = jsonObject.getAsJsonObject().getAsJsonArray("skuList");
+        JsonArray scuList = jsonObject.getAsJsonObject().getAsJsonArray("scuDto");
         List<ScuDto> scuDtoList = new ArrayList<>();
         for (JsonElement jsonScu : scuList) {
             scuDtoList.add(ScuConverter.jsonToDto(jsonScu));
         }
-        productDto.setScuList(scuDtoList);
+        productDto.setScuDto(scuDtoList);
         return productDto;
     }
 

@@ -5,6 +5,7 @@ import com.example.elasticsearch.dto.ProductDto;
 import com.example.elasticsearch.entity.ProductEntity;
 import com.example.elasticsearch.repository.ProductRepository;
 import com.example.elasticsearch.service.ProductService;
+import com.example.elasticsearch.utils.Url;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.*;
@@ -42,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
         Gson gson = builder.create();
         if (isAvailability == null && name == null) {
 
-            ResponseEntity<Object> response = restTemplate.getForEntity("http://localhost:9200/first17_index/_search", Object.class);
+            ResponseEntity<Object> response = restTemplate.getForEntity(Url.SEARCH_PRODUCTS, Object.class);
             JsonObject jsonObject = new Gson().fromJson(mapper.writeValueAsString(response), JsonObject.class);
             JsonObject hits = jsonObject.getAsJsonObject("body").get("hits").getAsJsonObject();
             JsonArray products = hits.getAsJsonArray("hits");
@@ -57,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
                     "        \"bool\": {\n" +
                     "             \"must\": [{\n" +
                     "                \"match_phrase\": {\n" +
-                    "                   \"skuList.isAvailability\":" + isAvailability + "\n" +
+                    "                   \"scuDto.isAvailability\":" + isAvailability + "\n" +
                     "                  }\n" +
                     "                },\n" +
                     "                {\n" +
@@ -72,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
             ParameterizedTypeReference<Object> ind = new ParameterizedTypeReference<Object>() {
             };
             HttpEntity<Object> requestEntity = new HttpEntity<>(gson.fromJson(json, Object.class));
-            ResponseEntity<Object> productDto = restTemplate.exchange("http://localhost:9200/first17_index/_search", HttpMethod.POST, requestEntity, ind);
+            ResponseEntity<Object> productDto = restTemplate.exchange(Url.SEARCH_PRODUCTS, HttpMethod.POST, requestEntity, ind);
             JsonObject jsonObject = new Gson().fromJson(mapper.writeValueAsString(productDto), JsonObject.class);
             JsonObject hits = jsonObject.getAsJsonObject("body").get("hits").getAsJsonObject();
             JsonArray products = hits.getAsJsonArray("hits");
@@ -85,14 +86,14 @@ public class ProductServiceImpl implements ProductService {
             String json = "{\n" +
                     "  \"query\": {\n" +
                     "    \"match_phrase\" : {\n" +
-                    "      \"skuList.isAvailability\":" + isAvailability + "\n" +
+                    "      \"scuDto.isAvailability\":" + isAvailability + "\n" +
                     "    }\n" +
                     "  }\n" +
                     "}";
             ParameterizedTypeReference<Object> ind = new ParameterizedTypeReference<Object>() {
             };
             HttpEntity<Object> requestEntity = new HttpEntity<>(gson.fromJson(json, Object.class));
-            ResponseEntity<Object> productDto = restTemplate.exchange("http://localhost:9200/first17_index/_search", HttpMethod.POST, requestEntity, ind);
+            ResponseEntity<Object> productDto = restTemplate.exchange(Url.SEARCH_PRODUCTS, HttpMethod.POST, requestEntity, ind);
             JsonObject jsonObject = new Gson().fromJson(mapper.writeValueAsString(productDto), JsonObject.class);
             JsonObject hits = jsonObject.getAsJsonObject("body").get("hits").getAsJsonObject();
             JsonArray products = hits.getAsJsonArray("hits");
@@ -114,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
             ParameterizedTypeReference<Object> ind = new ParameterizedTypeReference<Object>() {
             };
             HttpEntity<Object> requestEntity = new HttpEntity<>(gson.fromJson(json, Object.class));
-            ResponseEntity<Object> productDto = restTemplate.exchange("http://localhost:9200/first17_index/_search", HttpMethod.POST, requestEntity, ind);
+            ResponseEntity<Object> productDto = restTemplate.exchange(Url.SEARCH_PRODUCTS, HttpMethod.POST, requestEntity, ind);
             JsonObject jsonObject = new Gson().fromJson(mapper.writeValueAsString(productDto), JsonObject.class);
             JsonObject hits = jsonObject.getAsJsonObject("body").get("hits").getAsJsonObject();
             JsonArray products = hits.getAsJsonArray("hits");

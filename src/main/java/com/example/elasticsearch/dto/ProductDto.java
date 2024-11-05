@@ -8,7 +8,7 @@ public class ProductDto {
     private String name;
     private String dateCreate;
 
-    private List<ScuDto> scuList;
+    private List<ScuDto> scuDto;
 
     public String getName() {
         return name;
@@ -35,12 +35,12 @@ public class ProductDto {
     }
 
 
-    public List<ScuDto> getScuList() {
-        return scuList;
+    public List<ScuDto> getScuDto() {
+        return scuDto;
     }
 
-    public void setScuList(List<ScuDto> scuList) {
-        this.scuList = scuList;
+    public void setScuDto(List<ScuDto> scuDto) {
+        this.scuDto = scuDto;
     }
 
     public Long getId() {
@@ -56,7 +56,7 @@ public class ProductDto {
         return "ProductDto{" +
                 "name='" + name + '\'' +
                 ", dateCreate='" + dateCreate + '\'' +
-                ", scuList=" + scuList +
+                ", scuDto=" + scuDto +
                 '}';
     }
 }

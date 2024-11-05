@@ -67,6 +67,6 @@ public class ProductEntity {
                 "{" + '"' + "id" + '"' + ":" + id + "," +
                 '"' + "name" + '"' + ":" + '"' + name + '"' + "," +
                 '"' + "dateCreate" + '"' + ":" + '"' + dateCreate + '"' + "," +
-                '"' + "skuList" + '"' + ":" + skuList + '}';
+                '"' + "scuDto" + '"' + ":" + skuList + '}';
     }
 }
